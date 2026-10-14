@@ -1,0 +1,9 @@
+{
+    "pythonVersion": "3.10",
+    "typeCheckingMode": "standard",
+    "include": ["main.py", "gui", "nexus_core"],
+    "extraPaths": ["."],
+    "reportAttributeAccessIssue": "none",
+    "reportCallIssue": "none",
+    "reportIncompatibleMethodOverride": "none"
+}

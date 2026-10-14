@@ -1,0 +1,22 @@
+# Python and build output
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Local credentials, runtime state, and downloaded content
+cookies.json
+cookies*.json
+*.sqlite3
+*.sqlite3-*
+downloaded_mods/
+*.part
+*.aria2
+
+# Generated reference data, not required by the application
+mod_descriptions.txt

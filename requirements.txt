@@ -1,0 +1,12 @@
+# GUI
+PySide6>=6.6
+
+# Download backend (nexus_core.downloader) — browser-TLS impersonation for Nexus
+curl-cffi>=0.6
+
+# Conflict engine (TweakXL YAML scanning)
+PyYAML>=6.0
+
+# External command-line tools (install via your OS package manager, not pip):
+#   aria2c   — parallel downloader        (pacman -S aria2   / apt install aria2)
+#   bsdtar   — archive extraction         (pacman -S libarchive / apt install libarchive-tools)

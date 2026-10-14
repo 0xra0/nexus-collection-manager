@@ -1,0 +1,56 @@
+[project]
+name = "nexus-collection-manager"
+version = "0.17.6"
+description = "PySide6 front-end to download, install and manage Cyberpunk 2077 Nexus collections"
+requires-python = ">=3.10"
+dependencies = ["PySide6>=6.6", "curl-cffi>=0.6", "PyYAML>=6.0"]
+
+[project.scripts]
+# CLI access to the backends (the GUI runs them the same way, via python -m).
+nexus-download = "nexus_core.downloader:main"
+nexus-deploy   = "nexus_core.deployer:main"
+nexus-modctl   = "nexus_core.modctl:main"
+nexus-scan     = "nexus_core.mod_scanner:main"
+nexus-account  = "nexus_core.nexus_account:main"
+nexus-correlate = "nexus_core.auto_correlation:main"
+nexus-install = "nexus_core.mod_installation:main"
+nexus-links = "nexus_core.smart_deployment:main"
+nexus-conflicts = "nexus_core.conflict_detection:main"
+nexus-load-order = "nexus_core.load_order:main"
+nexus-archives = "nexus_core.archive_management:main"
+nexus-download-manager = "nexus_core.download_manager:main"
+nexus-trending = "nexus_core.trending_mods:main"
+nexus-profiles = "nexus_core.profile_manager:main"
+nexus-updates = "nexus_core.update_checker:main"
+nexus-onboarding = "nexus_core.onboarding:main"
+
+[project.gui-scripts]
+nexus-collection-manager = "main:main"
+
+[tool.setuptools]
+packages = ["gui", "nexus_core"]
+py-modules = ["main"]
+
+# ── Ruff ─────────────────────────────────────────────────────────────────────
+[tool.ruff]
+target-version = "py310"
+line-length = 110
+exclude = [".git", "__pycache__", "dist", "build", ".venv", "venv"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F"]
+ignore = [
+    "E741",   # ambiguous variable name (l/O/I) — common single-letter in comprehensions
+    "E731",   # lambda assignment — concise predicate callbacks in Qt signal wiring
+    "E501",   # line too long — QSS theme strings and Qt filter strings can't wrap
+    "E702",   # multiple statements on one line (semicolon) — used for compact widget setup
+]
+
+[tool.ruff.lint.per-file-ignores]
+# The backends are vendored CLIs kept close to their original form.
+"nexus_core/*" = ["E402", "E701", "E702", "E722", "F841"]
+
+# ── pytest ───────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
